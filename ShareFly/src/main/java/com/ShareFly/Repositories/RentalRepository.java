@@ -11,4 +11,8 @@ import com.ShareFly.Models.Rental;
 public interface RentalRepository extends CrudRepository<Rental, Long> {
 	
 	List<Rental> findAll();
+	
+	List<Rental> findByUserId(Long id);
+	
+	List<Rental> findByAirplaneId(Long id);
 }

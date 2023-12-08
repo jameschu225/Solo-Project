@@ -23,11 +23,14 @@
 		<h1>Welcome to Owner Club, <c:out value="${loginedUser.username}"/></h1>
 		<div>
 			<form:form action="/logout" method="post">
-				<input type="submit" class="btn btn-primary" value="logout"/>
+				<input type="submit" class="btn btn-primary" value="LogOut"/>
 			</form:form>
 		</div>
 	</div>
 	<h2>My Airplanes</h2>
+<%-- 	<c:if test="${alertMessage!= null }">
+		<script>alert("123123")</script>
+	</c:if> --%>
 	<div>
 		<table class="table table-dark table-hover">
 			<thead>
@@ -51,15 +54,15 @@
 						<td><c:out value="${airplane.tailNumber}"/></td>
 						<td><c:out value="${airplane.flightHr}"/></td>
 						<td><c:out value="${airplane.engineHr}"/></td>
-						<td>$<c:out value="${airplane.rentalPrice}"/></td>
+						<td>$ <c:out value="${airplane.rentalPrice}"/></td>
 						<td>
 							<div class="a">
-								<div><a href="/airplane/${airplane.id}/detail" class="btn btn-primary">view </a></div>
-								<div><a href="/airplane/${airplane.id}/edit" class="btn btn-primary"> edit </a></div>
+								<div><a href="/airplane/${airplane.id}/detail" class="btn btn-primary">View </a></div>
+								<div><a href="/airplane/${airplane.id}/edit" class="btn btn-primary"> Modify </a></div>
 								<div>
 									<form:form action="/deleteAirplane/${airplane.id}" method="post">
 										<input type="hidden" name="_method" value="delete"/>
-										<input type="submit" class="btn btn-primary" value="delete"/>
+										<input type="submit" class="btn btn-danger" value="Delete"/>
 									</form:form>
 								</div>
 							</div>

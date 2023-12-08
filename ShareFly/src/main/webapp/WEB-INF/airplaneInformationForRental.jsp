@@ -21,8 +21,12 @@
 <body>
 	<div class="b">
 		<h1>Airplane <c:out value="${airplaneInformation.tailNumber}"/></h1> 
-		<a href="/home" class="btn btn-primary" >back</a>
-		<a href="/logout" class="btn btn-primary">Logout</a>
+		<a href="/home" class="btn btn-primary" >Back</a>
+		<div>
+			<form:form action="/logout" method="post">
+				<input type="submit" class="btn btn-primary" value="LogOut"/>
+			</form:form>
+		</div>
 	</div>
 	<div></div>
 	<div class="a">
@@ -41,7 +45,7 @@
 			</p>
 			<p>
 				<label >Range: </label>
-				<c:out value="${airplaneInformation.flyRange}"></c:out>
+				<c:out value="${airplaneInformation.flyRange}"/> Nautical Miles
 			</p>
 			<p>
 				<label>Tail#: </label>
@@ -49,17 +53,17 @@
 			</p>
 			<p>
 				<label >Flight Hr: </label>
-				<c:out value="${airplaneInformation.flightHr}"></c:out>
+				<c:out value="${airplaneInformation.flightHr}"/> HR
 			</p>
 		</div>
 		<div>
 			<p>
 				<label >Engine Hr: </label>
-				<c:out value="${airplaneInformation.engineHr}"></c:out>
+				<c:out value="${airplaneInformation.engineHr}"/> Hr
 			</p>
 			<p>
 				<label >Rental Price: </label>
-				$<c:out value="${airplaneInformation.rentalPrice}"></c:out>
+				$ <c:out value="${airplaneInformation.rentalPrice}"></c:out>
 			</p>
 			<p>
 				<label >Maintenance Note: </label>

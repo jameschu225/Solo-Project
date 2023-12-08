@@ -19,9 +19,15 @@
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-	<h1>Add a Airplane</h1> 
-	<a href="/home">back</a>
-	<a href="/logout">Logout</a>
+	<div class="b">
+		<h1>Add a Airplane</h1> 
+		<a href="/home">back</a>
+		<div>
+			<form:form action="/logout" method="post">
+				<input type="submit" class="btn btn-primary" value="logout"/>
+			</form:form>
+		</div>
+	</div>
 	<form:form action="/newAirplane" method="post" modelAttribute="newAirplane">
 		<div>
 			<form:errors style="color:red;" path="make"/><br>

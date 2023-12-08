@@ -3,6 +3,7 @@ package com.ShareFly.Repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +17,8 @@ public interface AirplaneRepository extends CrudRepository<Airplane, Long> {
 	List<Airplane> findByUserId(Long id);
 	
 	Optional<Airplane> findByTailNumber(String tailNumber);
+
+	List<Airplane> findAll(Sort by);
+
+	List<Airplane> findByUserId(Long id, Sort by);
 }

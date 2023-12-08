@@ -22,9 +22,13 @@
 	<div class="b">
 		<h1>Rent Airplane <c:out value="${airplaneToRent.tailNumber}"/></h1> 
 		<a href="/home" class="btn btn-primary" >back</a>
-		<a href="/logout" class="btn btn-primary">Logout</a>
+		<div>
+			<form:form action="/logout" method="post">
+				<input type="submit" class="btn btn-primary" value="logout"/>
+			</form:form>
+		</div>
 	</div>
-	<form:form action="" method="post" modelAttribute="newRental">
+	<form:form action="/newRental" method="post" modelAttribute="newRental">
 		<div>
 			<form:errors style="color:red;" path="estimatedFlyRange"/><br>
 			<form:errors style="color:red;" path="startDate"/><br>
@@ -48,5 +52,7 @@
 		</p>	
 		<input type="submit" class="btn btn-primary" value="Rent"/>
 	</form:form>
+	
+	
 </body>
 </html>

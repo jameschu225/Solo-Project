@@ -16,7 +16,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name= "rentals")
@@ -26,17 +26,19 @@ public class Rental {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank(message="Ets. fly range must be filled!")
+	@NotNull(message="Ets. fly range must be filled!")
 	@Min(value = 100, message="estimated fly range must be at least 100 NM!")
 	private Integer estimatedFlyRange;
 	
-	@NotBlank(message="Start Date must be entered!")
-	@DateTimeFormat(pattern ="yyy-MM-dd")
+	@NotNull(message="Start Date must be entered!")
+	@DateTimeFormat(pattern ="yyy-MM-DD")
 	private Date startDate;
 	
-	@NotBlank(message="Return Date must be entered!")
-	@DateTimeFormat(pattern ="yyy-MM-dd")
+	@NotNull(message="Return Date must be entered!")
+	@DateTimeFormat(pattern ="yyyy-MM-DD")
 	private Date returnDate;
+	
+	private Integer totalPrice;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
@@ -129,5 +131,13 @@ public class Rental {
 
 	public void setUpdatedAt(Date updatedAt) {
 		UpdatedAt = updatedAt;
+	}
+
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

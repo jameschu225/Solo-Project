@@ -3,6 +3,7 @@ package com.ShareFly.Services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -24,6 +25,14 @@ public class AirplaneService {
 	
 	public List<Airplane> findAllAirplane() {
 		return airplaneRepository.findAll();
+	}
+	
+	public List<Airplane> findAllAirplaneSortByRentalDate() {
+		return airplaneRepository.findAll(Sort.by(Sort.Direction.ASC, "startDate"));
+	}
+	
+	public List<Airplane> findAllAirplaneByUserIdSortByRentalDate(Long id) {
+		return airplaneRepository.findByUserId(id, Sort.by(Sort.Direction.ASC, "startDate"));
 	}
 	
 	public List<Airplane> findAllAirplaneByUserId(Long id) {

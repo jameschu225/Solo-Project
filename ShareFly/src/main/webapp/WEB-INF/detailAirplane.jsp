@@ -20,10 +20,13 @@
 </head>
 <body>
 	<div class="b">
-
 		<h1>Schedule of <c:out value="${detailAirplane.tailNumber}"/></h1>
-		<a href="/home">back</a>
-		<a href="/logout">Logout</a>
+		<a class="btn btn-primary" href="/home">Back</a>
+		<div>
+			<form:form action="/logout" method="post">
+				<input type="submit" class="btn btn-primary" value="LogOut"/>
+			</form:form>
+		</div>
 	</div>
 	<div>
 		<table class="table table-dark table-hover">
@@ -32,17 +35,21 @@
 					<th>Name</th>
 					<th>Start Date</th>
 					<th>Return Date</th>
-					<th>Est. Fly Distance</th>
+					<th>Est. Fly Distance (Nautical Miles)</th>
 					<th>Status</th>
 				</tr>
 			</thead>	
 			<tbody>
-				<c:forEach var="info" items="">
+				<c:forEach var="rental" items="${detailAirplane.rentals}">
 					<tr>
-						<td><c:out value=""/></td>
-						<td><c:out value=""/></td>
-						<td><c:out value=""/></td>
-						<td><c:out value=""/></td>
+						<td><c:out value="${ rental.user.username}"/></td>
+						<td>			
+						<fmt:formatDate type="date" value="${rental.startDate }" pattern="MM/dd/yyyy" var="startDate"/>
+						<c:out value="${startDate }"/></td>
+						<td>						
+						<fmt:formatDate type="date" value="${rental.returnDate }" pattern="MM/dd/yyyy" var="returnDate"/>
+						<c:out value="${returnDate }"/></td>
+						<td><c:out value="${rental.estimatedFlyRange }"/></td>
 						<td><c:out value=""/></td>
 					</tr>
 				</c:forEach>

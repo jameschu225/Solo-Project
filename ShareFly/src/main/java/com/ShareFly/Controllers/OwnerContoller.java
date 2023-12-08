@@ -2,6 +2,8 @@ package com.ShareFly.Controllers;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import com.ShareFly.Models.Airplane;
 import com.ShareFly.Models.Rental;
 import com.ShareFly.Models.User;
 import com.ShareFly.Services.AirplaneService;
+import com.ShareFly.Services.RentalService;
 import com.ShareFly.Services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +32,8 @@ public class OwnerContoller {
 	AirplaneService airplaneService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	RentalService rentalService;
 	
 	@GetMapping("/home")
 	public String home(Model model, HttpSession session) {
@@ -40,21 +45,32 @@ public class OwnerContoller {
 			List<Airplane> allAirplane=airplaneService.findAllAirplaneByUserId(user.getId());
 			model.addAttribute("allAirplane", allAirplane);
 			model.addAttribute("loginedUser", (User) session.getAttribute("loginedUser"));
+			System.out.println(allAirplane);
+			
 			return "welcome.jsp";				
 		} 
-		if (userService.userTypeIdentify((User) session.getAttribute("loginedUser")).equals("Airplane Loaner")) {
+		if (userService.userTypeIdentify((User) session.getAttribute("loginedUser")).equals("Airplane Loaner")) {	
+			return "redirect:/rental";
+		} 
+		if (userService.userTypeIdentify((User) session.getAttribute("loginedUser")).equals("Admin")) {	
 			List<Airplane> allAirplane=airplaneService.findAllAirplane();
 			model.addAttribute("allAirplane", allAirplane);
 			model.addAttribute("loginedUser", (User) session.getAttribute("loginedUser"));
-			return "rentalHome.jsp";		
+			List<Rental> allRental=rentalService.findAllRental();
+			model.addAttribute("allRental", allRental);
+			return "adminPage.jsp";
 		} else {
-			return null;
+			return "redirect:/";
 		}
 	}
 	
 	@GetMapping("/airplane/new")
-	public String createAirplane(@ModelAttribute("newAirplane") Airplane newAirplane) {
+	public String createAirplane(@ModelAttribute("newAirplane") Airplane newAirplane, HttpSession session) {
+		if (session.getAttribute("loginedUser")== null) {
+			return "redirect:/";
+		} else {
 		return "newAirplane.jsp";
+		}
 	}
 	
 	@PostMapping("/newAirplane")
@@ -72,15 +88,20 @@ public class OwnerContoller {
 	
 	@GetMapping("/airplane/{id}/edit")
 	public String editAirplane(Model model,@PathVariable("id")Long id, HttpSession session) {
+		if (session.getAttribute("loginedUser")== null) {
+			return "redirect:/";
+		} else {
 		Airplane editedairplane = airplaneService.findOneAirplaneById(id);
 		model.addAttribute("loginedUser", session.getAttribute("loginedUser"));
 		model.addAttribute("editedairplane", editedairplane);
 		return "editAirplane.jsp";
+		}
 	}
 	
 	@PutMapping("/updateAirplane/{id}")
-	public String updateAirplane(@Valid@ModelAttribute("editedairplane") Airplane editedairplane, BindingResult result, Model model) {
+	public String updateAirplane(@Valid@ModelAttribute("editedairplane") Airplane editedairplane, BindingResult result, Model model, HttpSession session) {
 		if(result.hasErrors()) {
+			model.addAttribute("loginedUser", session.getAttribute("loginedUser"));
 			return "editAirplane.jsp";
 		} else {
 			airplaneService.updateAirplane(editedairplane);
@@ -89,32 +110,26 @@ public class OwnerContoller {
 	}
 	
 	@DeleteMapping("/deleteAirplane/{id}")
-	public String deleteAirplane(@PathVariable("id")Long id) {
+	public String deleteAirplane(@PathVariable("id")Long id, HttpSession session, Model model) {
 		Airplane deleteAirplane = airplaneService.findOneAirplaneById(id);
+		if (deleteAirplane.getRentals()!= null) {
+			String alertMessage = "alert";
+			model.addAttribute("alertMessage", alertMessage);		
+			return "redirect:/home";
+		} else {
 		airplaneService.deleteAirplane(deleteAirplane);
 		return "redirect:/home";
+		}
 	}
 	
 	@GetMapping("/airplane/{id}/detail")
 	public String showDetailAirplane(@PathVariable("id")Long id, Model model, HttpSession session) {
+		if (session.getAttribute("loginedUser")== null) {
+			return "redirect:/";
+		} else {
 		Airplane detailAirplane = airplaneService.findOneAirplaneById(id);
 		model.addAttribute("detailAirplane", detailAirplane);
 		return "detailAirplane.jsp";
+		}
 	}
-	
-	@GetMapping("/rental/airplane/{id}/detail")
-	public String showAirplaneInformation(@PathVariable("id")Long id, Model model, HttpSession session) {
-		Airplane airplaneInformation = airplaneService.findOneAirplaneById(id);
-		model.addAttribute("airplaneInformation", airplaneInformation);
-		return "airplaneInformationForRental.jsp";
-	}
-
-	@GetMapping("/rental/airplane/{id}/new")
-	public String rentAirplane(@ModelAttribute("newRental") Rental newRental, @PathVariable("id")Long id, Model model, HttpSession session) {
-		Airplane airplaneToRent = airplaneService.findOneAirplaneById(id);
-		model.addAttribute("airplaneToRent", airplaneToRent);
-		return "addRental.jsp";
-	}
-	
-	@PostMapping()
 }

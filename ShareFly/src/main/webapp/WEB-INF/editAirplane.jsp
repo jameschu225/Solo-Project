@@ -19,9 +19,15 @@
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<h1>Edit Airplane <c:out value="${editedairplane.tailNumber}"/></h1> 
-	<a href="/home">back</a>
-	<a href="/logout">Logout</a>
+	<div class="b">
+		<h1>Edit Airplane <c:out value="${editedairplane.tailNumber}"/></h1> 
+		<a href="/home" class="btn btn-primary" >Back</a>
+		<div>
+			<form:form action="/logout" method="post">
+				<input type="submit" class="btn btn-primary" value="LogOut"/>
+				</form:form>
+		</div>
+	</div>
 	<form:form action="/updateAirplane/${editedairplane.id}" method="post" modelAttribute="editedairplane">
 		<input type="hidden" name="_method" value="put"/>
 		<div>
@@ -72,9 +78,9 @@
 			<form:textarea value="${editedairplane.note}" path="note"/>
 		</p>
 		<p>
-			<form:hidden path="user" value="${loginedUser.id}"/>
+			<form:hidden path="user" value="${editedairplane.user.id}"/>
 		</p>				
-		<input type="submit" class="btn btn-primary" value="Submit"/>
+		<input type="submit" class="btn btn-primary" value="Update"/>
 	</form:form>
 </body>
 </html>

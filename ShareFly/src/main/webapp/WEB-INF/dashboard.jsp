@@ -25,7 +25,7 @@
 			<form:form action="/register" method="post" modelAttribute="registeruser">
 				<div class="mb-3">
 					<h3>Register</h3>
-					<p>
+					<p >
 						<form:label class="form-label" path="username">User Name:</form:label>
 						<form:errors class="form-text" style="color:red;" path="username"/>
 						<form:input class="form-control" path="username"/>
