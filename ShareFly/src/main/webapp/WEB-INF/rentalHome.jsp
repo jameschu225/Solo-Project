@@ -19,8 +19,9 @@
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
+<div class="rentalhome_background">
 	<div class="b">
-		<h1>Welcome to Loaner Club, <c:out value="${loginedUser.username}"/></h1>
+		<h1 style="font-family:Serif; font-size:70px; color:skyblue">Welcome to Loaner Club, <c:out value="${loginedUser.username}"/></h1>
 		<div>
 			<form:form action="/logout" method="post">
 				<input type="submit" class="btn btn-primary" value="LogOut"/>
@@ -101,5 +102,6 @@
 			</tbody>
 		</table>
 	</div>
+</div>
 </body>
 </html>

@@ -14,9 +14,135 @@
   	border-color: black;
 	height: 200px;
   	width: 200px;
+  	font-size:large;
+	background-color: transparent;
+  	
  }
  .d{
 	display: flex;
 	justify-content: space-start;
 	align-items: flex-start;
+}
+.dashboard_background{
+	background-image:url(../image/image1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+
+body, html {
+  height: 100%;
+}
+.header{
+	position:center;
+}
+.welcomee_background{
+	background-image:url(../image/image2.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.my_airplanes{
+	margin-top: 120px;
+}
+.addAirplane_background{
+	background-image:url(../image/image3.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.form_label{
+	color: whitesmoke;
+	font-size:large
+}
+.airplane_form{
+	margin-top:20%;
+	margin-left:40%;
+}
+.tranparent{
+	background-color: transparent;
+	color: lightgoldenrodyellow;
+	font-size:large;
+}
+.editariplane_background{
+	background-image:url(../image/image4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.form_label1{
+	color: azure;
+	font-size:large
+}
+.airplane_form1{
+	margin-top:10%;
+	margin-left:20%;
+}
+.detailairplane-background{
+	background-image:url(../image/image5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.rentalhome_background{
+	background-image:url(../image/image6.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.rentalairplane_background{
+	background-image:url(../image/image7.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.info{
+	color: azure;
+	font-size:x-large
+}
+.addrental-background{
+	background-image:url(../image/image9.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.form_label2{
+	color: royalblue;
+	font-size:large
+}
+.airplane_form2{
+	margin-top:10%;
+	margin-left:30%;
+	padding-right:40%;
+}
+.tranparent1{
+	background-color: transparent;
+	color: black;
+	font-size:large;
+}
+.editrental_background{
+	background-image:url(../image/image8.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
+}
+.label{
+	color: orangered;
+	font-size:large;
+}
+.admin_background{
+	background-image:url(../image/image10.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+   	height: 100%;
+ 	background-position: center;
 }

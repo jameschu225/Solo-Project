@@ -19,39 +19,41 @@
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
+<div class="addrental-background">
 	<div class="b">
-		<h1>Rent Airplane <c:out value="${airplaneToRent.tailNumber}"/></h1> 
-		<a href="/home" class="btn btn-primary" >back</a>
+		<h1 style="font-family:Serif; font-size:70px; color:skyblue">Rent Airplane <c:out value="${airplaneToRent.tailNumber}"/></h1> 
+		<a href="/home" class="btn btn-primary" >Back</a>
 		<div>
 			<form:form action="/logout" method="post">
-				<input type="submit" class="btn btn-primary" value="logout"/>
+				<input type="submit" class="btn btn-primary" value="LogOut"/>
 			</form:form>
 		</div>
 	</div>
-	<form:form action="/newRental" method="post" modelAttribute="newRental">
+	<form:form class="airplane_form2" action="/newRental" method="post" modelAttribute="newRental">
 		<div>
-			<form:errors style="color:red;" path="estimatedFlyRange"/><br>
-			<form:errors style="color:red;" path="startDate"/><br>
-			<form:errors style="color:red;" path="returnDate"/><br>
+			<p>
+				<form:label class="form_label2" path="estimatedFlyRange">Estimated Fly Distance: </form:label>
+				<form:errors style="color:red;" path="estimatedFlyRange"/><br>
+				<form:input class="form-control tranparent1" type="number" path="estimatedFlyRange"/>
+			</p>
+			<p>
+				<form:label class="form_label2" path="startDate">Starting Date: </form:label>
+				<form:errors style="color:red;" path="startDate"/><br>
+				<form:input class="form-control tranparent1" type="date" path="startDate"/>
+			</p>
+			<p>
+				<form:label class="form_label2" path="returnDate">Return Date: </form:label>
+				<form:errors style="color:red;" path="returnDate"/><br>
+				<form:input class="form-control tranparent1" type="date" path="returnDate"/>
+			</p>
+			<p>
+				<form:hidden path="user" value="${loginedUser.id}"/>
+				<form:hidden path="airplane" value="${airplaneToRent.id}"/>
+			</p>	
+			<input type="submit" class="btn btn-primary" value="Rent"/>
 		</div>
-		<p>
-			<form:label path="estimatedFlyRange">Estimated Fly Distance: </form:label>
-			<form:input type="number" path="estimatedFlyRange"/>
-		</p>
-		<p>
-			<form:label path="startDate">Starting Date: </form:label>
-			<form:input type="date" path="startDate"/>
-		</p>
-		<p>
-			<form:label path="returnDate">Return Date: </form:label>
-			<form:input type="date" path="returnDate"/>
-		</p>
-		<p>
-			<form:hidden path="user" value="${loginedUser.id}"/>
-			<form:hidden path="airplane" value="${airplaneToRent.id}"/>
-		</p>	
-		<input type="submit" class="btn btn-primary" value="Rent"/>
 	</form:form>
+</div>
 	
 	
 </body>

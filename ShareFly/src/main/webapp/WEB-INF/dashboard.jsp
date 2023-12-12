@@ -19,64 +19,69 @@
 <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<h1>Welcome To Share Fly</h1>
-	<div class="a">
-		<div class="container-sm">
-			<form:form action="/register" method="post" modelAttribute="registeruser">
-				<div class="mb-3">
-					<h3>Register</h3>
-					<p >
-						<form:label class="form-label" path="username">User Name:</form:label>
-						<form:errors class="form-text" style="color:red;" path="username"/>
-						<form:input class="form-control" path="username"/>
-					</p>
-					<p>
-						<form:label class="form-label" path="email">Email:</form:label>
-						<form:errors class="form-text" style="color:red;" path="email"/>
-						<form:input class="form-control" path="email"/>
-					</p>
-					<p>
-						<form:label class="form-label" path="password">Password:</form:label>
-						<form:errors class="form-text" style="color:red;" path="password"/>
-						<form:password class="form-control" path="password"/>
-					</p>
-					<p>
-						<form:label class="form-label" path="confirmpassword">Confirm PW:</form:label>
-						<form:errors class="form-text" style="color:red;" path="confirmpassword"/>
-						<form:password class="form-control" path="confirmpassword"/>
-					</p>
-					<p>
-						<form:label class="form-label" path="category">Category:</form:label>
-						<form:errors class="form-text" style="color:red;" path="category"/>
-						<form:select class="form-control" path="category">
-							<option value="" selected>Select Category</option>
-							<c:forEach var="role" items="${category}">
-								<form:option value="${role}" ><c:out value="${role}"/></form:option>
-							</c:forEach>
-						</form:select>
-					</p>
+<div class="dashboard_background">
+	<div >
+		<h1 style="font-family:Serif; font-size:70px; margin-left:30%">Welcome To Share Fly</h1>
+			<div class="a">
+				<div class="container-sm">
+					<form:form action="/register" method="post" modelAttribute="registeruser">
+						<div class="mb-3">
+							<h3>Register</h3>
+							<p >
+								<form:label class="form-label" path="username">User Name:</form:label>
+								<form:errors class="form-text" style="color:red;" path="username"/>
+								<form:input class="form-control tranparent" path="username"/>
+							</p>
+							<p>
+								<form:label class="form-label" path="email">Email:</form:label>
+								<form:errors class="form-text" style="color:red;" path="email"/>
+								<form:input class="form-control tranparent" path="email"/>
+							</p>
+							<p>
+								<form:label class="form-label" path="password">Password:</form:label>
+								<form:errors class="form-text" style="color:red;" path="password"/>
+								<form:password class="form-control tranparent" path="password"/>
+							</p>
+							<p>
+								<form:label class="form-label" path="confirmpassword">Confirm PW:</form:label>
+								<form:errors class="form-text" style="color:red;" path="confirmpassword"/>
+								<form:password class="form-control tranparent" path="confirmpassword"/>
+							</p>
+							<p>
+								<form:label class="form-label" path="category">Category:</form:label>
+								<form:errors class="form-text" style="color:red;" path="category"/>
+								<form:select class="form-control tranparent" path="category">
+									<option value="" selected>Select Category</option>
+									<c:forEach var="role" items="${category}">
+										<form:option value="${role}" ><c:out value="${role}"/></form:option>
+									</c:forEach>
+								</form:select>
+							</p>
+						</div>
+						<input type="submit" class="btn btn-primary" value="Register"/>		
+					</form:form>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Register"/>		
-			</form:form>
-		</div>
-		<div class="container-sm">
-			<form:form action="/login" method="post" modelAttribute="loginuser">
-				<div class="mb-3">
-					<h3>Log In</h3>
-					<p>
-						<form:label class="form-label" path="email">Email:</form:label>
-						<form:errors class="form-text" style="color:red;" path="email"/>
-						<form:input class="form-control" path="email"/>
-					</p>
-					<p>
-						<form:label class="form-label" path="password">Password:</form:label>
-						<form:errors class="form-text" style="color:red;" path="password"/>
-						<form:password class="form-control" path="password"/>
-					</p>
+				<div class="container-sm">
+					<form:form action="/login" method="post" modelAttribute="loginuser">
+						<div class="mb-3">
+							<h3>Log In</h3>
+							<p>
+								<form:label class="form-label" path="email">Email:</form:label>
+								<form:errors class="form-text" style="color:red;" path="email"/>
+								<form:input class="form-control tranparent" path="email"/>
+							</p>
+							<p>
+								<form:label class="form-label" path="password">Password:</form:label>
+								<form:errors class="form-text" style="color:red;" path="password"/>
+								<form:password class="form-control tranparent" path="password"/>
+							</p>
+						</div>
+						<input type="submit" class="btn btn-primary" value="Log In"/>		
+					</form:form>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Log In"/>		
-			</form:form>
-		</div>
+			</div>
 	</div>
+
+</div>
 </body>
 </html>
